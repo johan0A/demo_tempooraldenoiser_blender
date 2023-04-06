@@ -81,6 +81,22 @@
                 afterVideo.pause();
             }
         }
+
+        function syncVideos(video1, video2) {
+            if (Math.abs(video1.currentTime - video2.currentTime) > 0.1) {
+                video2.currentTime = video1.currentTime;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const beforeVideo = document.getElementById('beforeVideo');
+            const afterVideo = document.getElementById('afterVideo');
+
+            setInterval(() => {
+                syncVideos(beforeVideo, afterVideo);
+            }, 1);
+        });
+
     </script>
 </head>
 <body>
