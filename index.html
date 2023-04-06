@@ -83,8 +83,14 @@
         }
 
         function syncVideos(video1, video2) {
-            if (Math.abs(video1.currentTime - video2.currentTime) > 0.01) {
+            if (Math.abs(video1.currentTime - video2.currentTime) > 0.1) {
                 video2.currentTime = video1.currentTime;
+            }
+            // if one of the video is playing make sure the other is playing too
+            if (video1.paused && !video2.paused) {
+                video1.play();
+            } else if (!video1.paused && video2.paused) {
+                video2.play();
             }
         }
 
